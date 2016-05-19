@@ -34,8 +34,10 @@ class GUI_Setup_CellsListener implements MouseListener
         if (_tm != null)
         {
             _tm.stop();
-            event.getComponent().setLocation(this._defCellPosX, this._defCellPosY);
-            event.getComponent().setSize(46, 46);
+            cell.setCellShadowVisible(false);
+            cell.setLocation(this._defCellPosX, this._defCellPosY);
+            cell.setSize(MapSupplier.ICO_CELL.getIconWidth(),
+                    MapSupplier.ICO_CELL.getIconHeight());            
             cell.container.setLayer(event.getComponent(), 0);
         }
 
@@ -74,9 +76,11 @@ class GUI_Setup_CellsListener implements MouseListener
 
             _tm = new Timer(50, new Animation_Rotation((JLabel) event.getComponent()));
 
-            event.getComponent().setSize(90, 90);
-            cell.container.setLayer(event.getComponent(), 1);
+            cell.setSize(50, 50);
+            cell.container.setLayer(event.getComponent(), 2);
             cell.setIcon(MapSupplier.ICO_CELL_FOCUSED);
+            cell.setCellShadowType(false);
+            cell.setCellShadowVisible(true);
             _tm.start();
         }
     }
@@ -89,10 +93,12 @@ class GUI_Setup_CellsListener implements MouseListener
         if (cell.setupStatus == ESetupCellStatus.Empty)
         {
             _tm.stop();
-            event.getComponent().setLocation(this._defCellPosX, this._defCellPosY);
-            event.getComponent().setSize(46, 46);
-            cell.container.setLayer(event.getComponent(), 0);
+            cell.setCellShadowVisible(false);
+            cell.setLocation(this._defCellPosX, this._defCellPosY);
             cell.setIcon(MapSupplier.ICO_CELL);
+            cell.setSize(MapSupplier.ICO_CELL.getIconWidth(),
+                    MapSupplier.ICO_CELL.getIconHeight());
+            cell.container.setLayer(event.getComponent(), 0);
         }
     }
 
@@ -104,6 +110,7 @@ class GUI_Setup_CellsListener implements MouseListener
         if (cell.setupStatus == ESetupCellStatus.Empty)
         {
             cell.setIcon(MapSupplier.ICO_CELL_FOCUSED_PRESSED);
+            cell.setCellShadowType(true);
         }
     }
 
@@ -263,8 +270,8 @@ class GUI_Setup_CellsListener implements MouseListener
         public Animation_Rotation(JLabel distCell)
         {
             __dist = distCell;
-            __defButtonPosX = distCell.getX() - 12;
-            __defButtonPosY = distCell.getY() - 21;
+            __defButtonPosX = distCell.getX()-2/* - 12*/;
+            __defButtonPosY = distCell.getY() - 4/* - 21*/;
             __dist.setLocation(__defButtonPosX, __defButtonPosY);
         }
 
