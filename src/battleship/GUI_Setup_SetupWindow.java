@@ -203,7 +203,7 @@ class GUI_Setup_SetupWindow extends JFrame implements MouseListener
             this._dashboardShipsCountIco[i].setForeground(new Color(122, 141, 155));
         }
 
-        MapSupplier.SetGridLabel(this._userCells, this._mainPanel, this._dashboard.getWidth() + 20, 50);
+        MapSupplier.SetGridLabel(this._userCells, this._mainPanel, this._dashboard.getWidth() + 20, 50, this.getWidth() / 2 + 100, (this.getHeight() / 2) - 29);
 
         for (GUI_FieldCell[] cell : this._userCells)
         {

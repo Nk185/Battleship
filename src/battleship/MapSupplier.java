@@ -29,7 +29,7 @@ class MapSupplier
     public static final ImageIcon BUTTON_SETUP_STARTGAME_ACTIVE_FOCUSED = new ImageIcon("images/setup/StartGameButton_Active_Focused.png");
     
     public static final void SetGridLabel(GUI_FieldCell[][] labelsArray, JLayeredPane sourcePanel,
-            int startLblPosX, int startLblPosY)
+            int startLblPosX, int startLblPosY, int lightX, int lightY)
     {
         final int border       = 5;
         final int buttonWidth  = 46;
@@ -39,7 +39,7 @@ class MapSupplier
         {
             for (int j = 0; j < 10; j++)
             {
-                labelsArray[i][j] = new GUI_FieldCell(sourcePanel, i, j);
+                labelsArray[i][j] = new GUI_FieldCell(sourcePanel, i, j, lightX, lightY);
                
                 labelsArray[i][j].setLocation(startLblPosX, startLblPosY);
                 labelsArray[i][j].setIcon(ICO_CELL);

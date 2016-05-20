@@ -7,6 +7,8 @@ import javax.swing.*;
 public class GUI_FieldCell extends JLabel implements ComponentListener
 {
     private final JLabel _Shadow;
+    private int _LightX;
+    private int _LightY;
     private boolean _isCellPressed;
 
     public final int xFieldPos;
@@ -14,11 +16,13 @@ public class GUI_FieldCell extends JLabel implements ComponentListener
     public final JLayeredPane container;
     public ESetupCellStatus setupStatus = ESetupCellStatus.Empty;
 
-    public GUI_FieldCell(JLayeredPane container, int xFieldPos, int yFieldPos)
+    public GUI_FieldCell(JLayeredPane container, int xFieldPos, int yFieldPos, int lightX, int lightY)
     {
         this.container = container;
         this.xFieldPos = xFieldPos;
         this.yFieldPos = yFieldPos;
+        this._LightX = lightX;
+        this._LightY = lightY;
         this.addComponentListener(this);
         
         this._Shadow = new JLabel();
@@ -31,7 +35,7 @@ public class GUI_FieldCell extends JLabel implements ComponentListener
     }
 
     public void setCellShadowType(boolean isCellPressed)
-    {
+    {     
         if (isCellPressed)
         {
             this._Shadow.setIcon(MapSupplier.ICO_CELL_SHADOW_ACTIVE_PRESSED);
@@ -79,8 +83,8 @@ public class GUI_FieldCell extends JLabel implements ComponentListener
         int ShadowInCentrePosX = source.getX() - (source._Shadow.getWidth() / 2) + (source.getWidth() / 2);
         int ShadowInCentrePosY = source.getY() - (source._Shadow.getHeight() / 2) + (source.getHeight() / 2);
         
-        source.setShadowPos(ShadowInCentrePosX + ((source.getX() - 419) / (source._isCellPressed ? 200 : 100)),
-                ShadowInCentrePosY + ((source.getY() - 303) / (source._isCellPressed ? 200 : 100)));
+        source.setShadowPos(ShadowInCentrePosX + ((source.getX() - source._LightX) / (source._isCellPressed ? 150 : 140)),
+                ShadowInCentrePosY + ((source.getY() - source._LightY) / (source._isCellPressed ? 150 : 140)));
     }
 
     /**
