@@ -8,6 +8,6 @@ public class Battleship
         IEnemyLogic enemy   = new EnemyLogic();
         IControlLogic logic = new ControlLogic(user);
         
-        logic.StartTheGame(); 
+        logic.startTheGame(); 
     }    
 }

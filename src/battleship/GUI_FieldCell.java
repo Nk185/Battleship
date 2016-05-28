@@ -27,9 +27,9 @@ public class GUI_FieldCell extends JLabel implements ComponentListener
         
         this._Shadow = new JLabel();
         this._Shadow.setVisible(false);
-        this._Shadow.setIcon(MapSupplier.ICO_CELL_SHADOW_ACTIVE);
-        this._Shadow.setSize(MapSupplier.ICO_CELL_SHADOW_ACTIVE.getIconWidth(),
-                MapSupplier.ICO_CELL_SHADOW_ACTIVE.getIconHeight());
+        this._Shadow.setIcon(MapEngine.ICO_CELL_SHADOW_ACTIVE);
+        this._Shadow.setSize(MapEngine.ICO_CELL_SHADOW_ACTIVE.getIconWidth(),
+                MapEngine.ICO_CELL_SHADOW_ACTIVE.getIconHeight());
         container.add(this._Shadow);
         container.setLayer(this._Shadow, 1);
     }
@@ -38,19 +38,19 @@ public class GUI_FieldCell extends JLabel implements ComponentListener
     {     
         if (isCellPressed)
         {
-            this._Shadow.setIcon(MapSupplier.ICO_CELL_SHADOW_ACTIVE_PRESSED);
-            this._Shadow.setSize(MapSupplier.ICO_CELL_SHADOW_ACTIVE_PRESSED.getIconWidth(),
-                    MapSupplier.ICO_CELL_SHADOW_ACTIVE_PRESSED.getIconHeight());
+            this._Shadow.setIcon(MapEngine.ICO_CELL_SHADOW_ACTIVE_PRESSED);
+            this._Shadow.setSize(MapEngine.ICO_CELL_SHADOW_ACTIVE_PRESSED.getIconWidth(),
+                    MapEngine.ICO_CELL_SHADOW_ACTIVE_PRESSED.getIconHeight());
         }
         else 
         {
-            this._Shadow.setIcon(MapSupplier.ICO_CELL_SHADOW_ACTIVE);
-            this._Shadow.setSize(MapSupplier.ICO_CELL_SHADOW_ACTIVE.getIconWidth(),
-                    MapSupplier.ICO_CELL_SHADOW_ACTIVE.getIconHeight());
+            this._Shadow.setIcon(MapEngine.ICO_CELL_SHADOW_ACTIVE);
+            this._Shadow.setSize(MapEngine.ICO_CELL_SHADOW_ACTIVE.getIconWidth(),
+                    MapEngine.ICO_CELL_SHADOW_ACTIVE.getIconHeight());
         }
         
-        this._Shadow.setLocation(this.getX() - (this._Shadow.getWidth() / 2) + (this.getWidth() / 2),
-                this.getY() - (this._Shadow.getHeight() / 2) + (this.getHeight()/ 2));
+        this._Shadow.setLocation(this.getX() + (this.getWidth() / 2) - (this._Shadow.getWidth() / 2),
+                this.getY() + (this.getHeight() / 2)- (this._Shadow.getHeight() / 2));
         this._isCellPressed = isCellPressed;
     }
 
@@ -80,11 +80,11 @@ public class GUI_FieldCell extends JLabel implements ComponentListener
     public final void componentMoved(ComponentEvent e)
     {        
         GUI_FieldCell source = (GUI_FieldCell) e.getComponent();
-        int ShadowInCentrePosX = source.getX() - (source._Shadow.getWidth() / 2) + (source.getWidth() / 2);
-        int ShadowInCentrePosY = source.getY() - (source._Shadow.getHeight() / 2) + (source.getHeight() / 2);
+        int ShadowInCentrePosX = source.getX() + (source.getWidth() / 2) - (source._Shadow.getWidth() / 2);
+        int ShadowInCentrePosY = source.getY() + (source.getHeight() / 2) - (source._Shadow.getHeight() / 2);
         
-        source.setShadowPos(ShadowInCentrePosX + ((source.getX() - source._LightX) / (source._isCellPressed ? 150 : 140)),
-                ShadowInCentrePosY + ((source.getY() - source._LightY) / (source._isCellPressed ? 150 : 140)));
+        source.setShadowPos(ShadowInCentrePosX + ((source.getX() - source._LightX) / (source._isCellPressed ? 145 : 140)),
+                ShadowInCentrePosY + ((source.getY() - source._LightY) / (source._isCellPressed ? 145 : 140)));
     }
 
     /**

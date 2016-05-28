@@ -8,41 +8,41 @@ public class GUI implements IUser
     private GUI_Setup_SetupWindow _setup;
     private DashBoardInfoGUI _guiSettings;
 
-    public void ShowMessage(String message)
+    public void showMessage(String message)
     {
 
     }
 
-    public void ShowSetup(String caption)
+    public void showSetup(String caption)
     {
         _setup = new GUI_Setup_SetupWindow(caption);
         _setup.setVisible(true);
     }
 
-    public void CloseSetup()
+    public void closeSetup()
     {
         _setup.setVisible(false);
     }
 
-    public void OpenGameWindow()
+    public void openGameWindow()
     {
 
     }
 
-    public void CloseGameWindow()
+    public void closeGameWindow()
     {
 
-    }
-
-    @Override
-    public void Setup_Set_StartGameListener(IStartGameEvent listener)
-    {
-        _setup.SetStartGameEventListener(listener);
     }
 
     @Override
-    public MapSettings Setup_Process_GenerateMap()
+    public void setup_Set_StartGameListener(IStartGameEvent listener)
     {
-        return _setup.GenerateMap();
+        _setup.setStartGameEventListener(listener);
+    }
+
+    @Override
+    public MapSettings setup_Process_GenerateMap()
+    {
+        return _setup.generateMap();
     }
 }

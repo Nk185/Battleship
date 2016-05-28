@@ -14,21 +14,21 @@ public class ControlLogic implements IControlLogic, IStartGameEvent
     }
 
     @Override
-    public void StartTheGame()
+    public void startTheGame()
     {
-        this._view.ShowSetup("Встановіть свої кораблі");
-        this._view.Setup_Set_StartGameListener(this);
+        this._view.showSetup("Встановіть свої кораблі");
+        this._view.setup_Set_StartGameListener(this);
     }
 
     @Override
-    public void StartButtonClicked()
+    public void startButtonClicked()
     {
         MapSettings ms;
 
         JOptionPane.showMessageDialog(null, "Кнопка \"Розпочати гру\" була натиснута!!!",
                 "Попередження", JOptionPane.INFORMATION_MESSAGE);
 
-        ms = _view.Setup_Process_GenerateMap();
+        ms = _view.setup_Process_GenerateMap();
         for (int i = 0; i < 10; i++)
         {
             for (int j = 0; j < 10; j++)

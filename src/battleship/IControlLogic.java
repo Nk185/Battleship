@@ -2,5 +2,5 @@ package battleship;
 
 public interface IControlLogic
 {
-    void StartTheGame();
+    void startTheGame();
 }
