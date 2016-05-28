@@ -3,5 +3,5 @@ package battleship;
 public interface IStartGameEvent
 {
 
-    void StartButtonClicked();
+    void startButtonClicked();
 }

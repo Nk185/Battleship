@@ -7,7 +7,7 @@ public class EnemyLogic implements IEnemyLogic
 
     @Override
     // MapSettings (userMap) ALLWAYS WILL BE PASSED BY REFERENCE!!!!!
-    public void Fire(MapSettings userMap) // TODO: create a logic
+    public void fire(MapSettings userMap) // TODO: create a logic
     {
         Random rand = new Random();
         byte xCoord;
@@ -23,7 +23,7 @@ public class EnemyLogic implements IEnemyLogic
     }
 
     @Override
-    public MapSettings GenerateEnemyMap()
+    public MapSettings generateEnemyMap()
     {
         MapSettings ms = new MapSettings();
         Random rand    = new Random();

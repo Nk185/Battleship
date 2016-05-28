@@ -36,8 +36,8 @@ class GUI_Setup_CellsListener implements MouseListener
             _tm.stop();
             cell.setCellShadowVisible(false);
             cell.setLocation(this._defCellPosX, this._defCellPosY);
-            cell.setSize(MapSupplier.ICO_CELL.getIconWidth(),
-                    MapSupplier.ICO_CELL.getIconHeight());            
+            cell.setSize(MapEngine.ICO_CELL.getIconWidth(),
+                    MapEngine.ICO_CELL.getIconHeight());            
             cell.container.setLayer(event.getComponent(), 0);
         }
 
@@ -78,7 +78,7 @@ class GUI_Setup_CellsListener implements MouseListener
 
             cell.setSize(50, 50);
             cell.container.setLayer(event.getComponent(), 2);
-            cell.setIcon(MapSupplier.ICO_CELL_FOCUSED);
+            cell.setIcon(MapEngine.ICO_CELL_FOCUSED);
             cell.setCellShadowType(false);
             cell.setCellShadowVisible(true);
             _tm.start();
@@ -95,9 +95,9 @@ class GUI_Setup_CellsListener implements MouseListener
             _tm.stop();
             cell.setCellShadowVisible(false);
             cell.setLocation(this._defCellPosX, this._defCellPosY);
-            cell.setIcon(MapSupplier.ICO_CELL);
-            cell.setSize(MapSupplier.ICO_CELL.getIconWidth(),
-                    MapSupplier.ICO_CELL.getIconHeight());
+            cell.setIcon(MapEngine.ICO_CELL);
+            cell.setSize(MapEngine.ICO_CELL.getIconWidth(),
+                    MapEngine.ICO_CELL.getIconHeight());
             cell.container.setLayer(event.getComponent(), 0);
         }
     }
@@ -109,7 +109,7 @@ class GUI_Setup_CellsListener implements MouseListener
 
         if (cell.setupStatus == ESetupCellStatus.Empty)
         {
-            cell.setIcon(MapSupplier.ICO_CELL_FOCUSED_PRESSED);
+            cell.setIcon(MapEngine.ICO_CELL_FOCUSED_PRESSED);
             cell.setCellShadowType(true);
         }
     }
@@ -162,9 +162,9 @@ class GUI_Setup_CellsListener implements MouseListener
         } else if (currentCell.setupStatus == ESetupCellStatus.SetupInProgress_FirstShip)
         {
             this._setButton.buttonEnabled = true;
-            this._setButton.setIcon(MapSupplier.BUTTON_SETUP_SETSHIP_ACTIVE);
+            this._setButton.setIcon(MapEngine.BUTTON_SETUP_SETSHIP_ACTIVE);
 
-            currentCell.setIcon(MapSupplier.ICO_CELL_WITH_SHIP);
+            currentCell.setIcon(MapEngine.ICO_CELL_WITH_SHIP);
             firstShipXCoord = currentCell.xFieldPos;
             firstShipYCoord = currentCell.yFieldPos;
 
@@ -176,14 +176,14 @@ class GUI_Setup_CellsListener implements MouseListener
                     if (this._cells[i][j].setupStatus == ESetupCellStatus.Empty)
                     {
                         this._cells[i][j].setupStatus = ESetupCellStatus.NotAvailable;
-                        this._cells[i][j].setIcon(MapSupplier.ICO_CELL_INACTIVE);
+                        this._cells[i][j].setIcon(MapEngine.ICO_CELL_INACTIVE);
                     } 
                     else if (this._cells[i][j].setupStatus == ESetupCellStatus.NearShip)
                     {
-                        this._cells[i][j].setIcon(MapSupplier.ICO_CELL_INACTIVE);                    
+                        this._cells[i][j].setIcon(MapEngine.ICO_CELL_INACTIVE);                    
                     }
                     else if (this._cells[i][j].setupStatus == ESetupCellStatus.ContainsShip)
-                        this._cells[i][j].setIcon(MapSupplier.ICO_CELL_MASKED_SHIP);                    
+                        this._cells[i][j].setIcon(MapEngine.ICO_CELL_MASKED_SHIP);                    
                 }
             }
 
@@ -205,7 +205,7 @@ class GUI_Setup_CellsListener implements MouseListener
                     else if (this._cells[i][firstShipYCoord].setupStatus == ESetupCellStatus.NotAvailable)
                     {
                         this._cells[i][firstShipYCoord].setupStatus = ESetupCellStatus.Empty;
-                        this._cells[i][firstShipYCoord].setIcon(MapSupplier.ICO_CELL);
+                        this._cells[i][firstShipYCoord].setIcon(MapEngine.ICO_CELL);
                     }
                 }
             }
@@ -219,7 +219,7 @@ class GUI_Setup_CellsListener implements MouseListener
                     else if (this._cells[i][firstShipYCoord].setupStatus == ESetupCellStatus.NotAvailable)
                     {
                         this._cells[i][firstShipYCoord].setupStatus = ESetupCellStatus.Empty;
-                        this._cells[i][firstShipYCoord].setIcon(MapSupplier.ICO_CELL);
+                        this._cells[i][firstShipYCoord].setIcon(MapEngine.ICO_CELL);
                     }
                 }
             }
@@ -233,7 +233,7 @@ class GUI_Setup_CellsListener implements MouseListener
                     else if (this._cells[firstShipXCoord][i].setupStatus == ESetupCellStatus.NotAvailable)
                     {
                         this._cells[firstShipXCoord][i].setupStatus = ESetupCellStatus.Empty;
-                        this._cells[firstShipXCoord][i].setIcon(MapSupplier.ICO_CELL);
+                        this._cells[firstShipXCoord][i].setIcon(MapEngine.ICO_CELL);
                     }
                 }
             }
@@ -247,13 +247,13 @@ class GUI_Setup_CellsListener implements MouseListener
                     else if (this._cells[firstShipXCoord][i].setupStatus == ESetupCellStatus.NotAvailable)
                     {
                         this._cells[firstShipXCoord][i].setupStatus = ESetupCellStatus.Empty;
-                        this._cells[firstShipXCoord][i].setIcon(MapSupplier.ICO_CELL);
+                        this._cells[firstShipXCoord][i].setIcon(MapEngine.ICO_CELL);
                     }
                 }
             }
         } else if (currentCell.setupStatus == ESetupCellStatus.SetupInProgress)
         {
-            currentCell.setIcon(MapSupplier.ICO_CELL_WITH_SHIP);
+            currentCell.setIcon(MapEngine.ICO_CELL_WITH_SHIP);
             currentCell.setupStatus = ESetupCellStatus.SetupInProgress;
         }
         

@@ -3,7 +3,7 @@ package battleship;
 import javax.swing.ImageIcon;
 import javax.swing.JLayeredPane;
 
-class MapSupplier  
+class MapEngine  
 {
     public static final ImageIcon ICO_CELL                 = new ImageIcon("images/setup/Cell.png");
     public static final ImageIcon ICO_CELL_FOCUSED         = new ImageIcon("images/setup/Cell_Active_Focused.png");    
@@ -28,7 +28,7 @@ class MapSupplier
     public static final ImageIcon BUTTON_SETUP_STARTGAME_ACTIVE         = new ImageIcon("images/setup/StartGameButton_Active.png");
     public static final ImageIcon BUTTON_SETUP_STARTGAME_ACTIVE_FOCUSED = new ImageIcon("images/setup/StartGameButton_Active_Focused.png");
     
-    public static final void SetGridLabel(GUI_FieldCell[][] labelsArray, JLayeredPane sourcePanel,
+    public static final void setGridLabel(GUI_FieldCell[][] labelsArray, JLayeredPane sourcePanel,
             int startLblPosX, int startLblPosY, int lightX, int lightY)
     {
         final int border       = 5;
