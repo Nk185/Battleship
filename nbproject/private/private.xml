@@ -3,20 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="3"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/I:/AllJava/Battleship/src/battleship/GUI_Setup_SetupWindow.java</file>
-            <file>file:/I:/AllJava/Battleship/src/battleship/ESetupCellStatus.java</file>
-            <file>file:/I:/AllJava/Battleship/src/battleship/DashBoardInfoGUI.java</file>
-            <file>file:/I:/AllJava/Battleship/src/battleship/GUI_FieldCell.java</file>
-            <file>file:/I:/AllJava/Battleship/src/battleship/IStartGameEvent.java</file>
-            <file>file:/I:/AllJava/Battleship/src/battleship/ControlLogic.java</file>
-            <file>file:/I:/AllJava/Battleship/src/battleship/IUser.java</file>
-            <file>file:/I:/AllJava/Battleship/src/battleship/GUI_Setup_DashButton.java</file>
-            <file>file:/I:/AllJava/Battleship/src/battleship/Battleship.java</file>
-            <file>file:/I:/AllJava/Battleship/src/battleship/GUI_Setup_CellsListener.java</file>
-            <file>file:/I:/AllJava/Battleship/src/battleship/ECellStatus.java</file>
-            <file>file:/I:/AllJava/Battleship/src/battleship/MapSupplier.java</file>
-            <file>file:/I:/AllJava/Battleship/src/battleship/EnemyLogic.java</file>
-            <file>file:/I:/AllJava/Battleship/src/battleship/GUI.java</file>
+            <file>file:/G:/AllJava/Battleship/src/battleship/GUI_FieldCell.java</file>
+            <file>file:/G:/AllJava/Battleship/src/battleship/GUI_Setup_SetupWindow.java</file>
+            <file>file:/G:/AllJava/Battleship/src/battleship/MapSupplier.java</file>
         </group>
     </open-files>
 </project-private>

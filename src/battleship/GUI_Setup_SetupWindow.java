@@ -26,7 +26,64 @@ class GUI_Setup_SetupWindow extends JFrame implements MouseListener
         super.setDefaultCloseOperation(EXIT_ON_CLOSE);
         super.getContentPane().setBackground(new Color(209, 229, 248));
 
-        _InitializeComponents();
+        _ShowHelloMessage();
+    }
+
+    private void _ShowHelloMessage()
+    {
+        JLabel _introBG;
+        JLabel[] _instructionMsg;
+        int monitorWidth = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getWidth();
+        int monitorHeight = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getHeight();
+
+        this._mainPanel = new JLayeredPane();
+        _introBG = new JLabel();
+        _instructionMsg = new JLabel[3];
+        _instructionMsg[0] = new JLabel();
+        _instructionMsg[1] = new JLabel();
+        _instructionMsg[2] = new JLabel();
+
+        _introBG.setIcon(new ImageIcon("images/setup/Intro_Hello_BG.png"));
+        _introBG.setLocation(0, 0);
+        _introBG.setSize(_introBG.getIcon().getIconWidth(), _introBG.getIcon().getIconHeight());
+
+        _instructionMsg[0].setIcon(new ImageIcon("images/setup/Intro_Hello_Message.png"));
+        _instructionMsg[0].setLocation(350, 210);
+        _instructionMsg[0].setSize(_instructionMsg[0].getIcon().getIconWidth(),
+                _instructionMsg[0].getIcon().getIconHeight());
+
+        _instructionMsg[1].setIcon(new ImageIcon("images/setup/Intro_Hello_BtnYes.png"));
+        _instructionMsg[1].setLocation(_instructionMsg[0].getX(),
+                _instructionMsg[0].getY() + _instructionMsg[0].getHeight());
+        _instructionMsg[1].setSize(_instructionMsg[1].getIcon().getIconWidth(),
+                _instructionMsg[1].getIcon().getIconHeight());
+        _instructionMsg[1].addMouseListener(new IntroBtnListener(_introBG, _instructionMsg[0], _instructionMsg[1], _instructionMsg[2], this));
+
+        _instructionMsg[2].setIcon(new ImageIcon("images/setup/Intro_Hello_BtnNo.png"));
+        _instructionMsg[2].setLocation(_instructionMsg[1].getX() + _instructionMsg[1].getWidth(),
+                _instructionMsg[0].getY() + _instructionMsg[0].getHeight());
+        _instructionMsg[2].setSize(_instructionMsg[2].getIcon().getIconWidth(),
+                _instructionMsg[2].getIcon().getIconHeight());
+        _instructionMsg[2].addMouseListener(new IntroBtnListener(_introBG, _instructionMsg[0], _instructionMsg[1], _instructionMsg[2], this));
+
+        this._mainPanel.add(_introBG);
+        this._mainPanel.add(_instructionMsg[0]);
+        this._mainPanel.add(_instructionMsg[1]);
+        this._mainPanel.add(_instructionMsg[2]);
+
+        this._mainPanel.setLayer(_introBG, 1);
+        this._mainPanel.setLayer(_instructionMsg[0], 2);
+        this._mainPanel.setLayer(_instructionMsg[1], 2);
+        this._mainPanel.setLayer(_instructionMsg[2], 2);
+
+        super.getContentPane().add(this._mainPanel);
+        super.setSize(_introBG.getIcon().getIconWidth(), _introBG.getIcon().getIconHeight() + 29);
+        super.setLocation((monitorWidth - super.getWidth()) / 2, (monitorHeight - super.getHeight()) / 2);
+    }
+
+    public void InitAll()
+    {
+        this._InitializeComponents();
     }
 
     public void SetStartGameEventListener(IStartGameEvent listener)
@@ -62,24 +119,23 @@ class GUI_Setup_SetupWindow extends JFrame implements MouseListener
 
     private void _InitializeComponents()
     {
-        this._mainPanel = new JLayeredPane();
         this._dashboard = new JLabel();
 
         this._buttonStartGame = new GUI_Setup_DashButton(0);
-        this._buttonSetShip   = new GUI_Setup_DashButton(1);
-        this._resetButton     = new GUI_Setup_DashButton(2);
+        this._buttonSetShip = new GUI_Setup_DashButton(1);
+        this._resetButton = new GUI_Setup_DashButton(2);
 
         this._userCells = new GUI_FieldCell[10][10];
 
-        this._dashboardShipsIco          = new JLabel[4];
+        this._dashboardShipsIco = new JLabel[4];
         this._dashboardShipsIndicatorIco = new JLabel[4];
-        this._dashboardShipsCountIco     = new JLabel[4];
+        this._dashboardShipsCountIco = new JLabel[4];
 
         for (int i = 0; i < 4; i++)
         {
-            this._dashboardShipsIco[i]          = new JLabel();
+            this._dashboardShipsIco[i] = new JLabel();
             this._dashboardShipsIndicatorIco[i] = new JLabel();
-            this._dashboardShipsCountIco[i]     = new JLabel();
+            this._dashboardShipsCountIco[i] = new JLabel();
         }
 
         _dashBoardInfoGUI = new DashBoardInfoGUI();
@@ -89,9 +145,6 @@ class GUI_Setup_SetupWindow extends JFrame implements MouseListener
 
     private void _InitSetupGUI()
     {
-        int monitorWidth  = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getWidth();
-        int monitorHeight = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode().getHeight();
-
         this._dashboard.setIcon(new ImageIcon("images/setup/dash.png"));
         this._dashboard.setSize(this._dashboard.getIcon().getIconWidth(),
                 this._dashboard.getIcon().getIconHeight());
@@ -150,7 +203,7 @@ class GUI_Setup_SetupWindow extends JFrame implements MouseListener
             this._dashboardShipsCountIco[i].setForeground(new Color(122, 141, 155));
         }
 
-        MapSupplier.SetGridLabel(this._userCells, this._mainPanel, this._dashboard.getWidth() + 20, 50);
+        MapSupplier.SetGridLabel(this._userCells, this._mainPanel, this._dashboard.getWidth() + 20, 50, this.getWidth() / 2 + 100, (this.getHeight() / 2) - 29);
 
         for (GUI_FieldCell[] cell : this._userCells)
         {
@@ -171,11 +224,6 @@ class GUI_Setup_SetupWindow extends JFrame implements MouseListener
         this._mainPanel.add(this._resetButton);
         this._mainPanel.add(this._dashboard);
         this._mainPanel.setLayout(null);
-
-        super.getContentPane().add(this._mainPanel);
-        super.setSize(this._userCells[9][9].getX() + this._userCells[9][9].getWidth() + 40,
-                this._dashboard.getIcon().getIconHeight() - 20);
-        super.setLocation((monitorWidth - super.getWidth()) / 2, (monitorHeight - super.getHeight()) / 2);
     }
 
     private void _RenderDash(DashBoardInfoGUI settings)
@@ -185,10 +233,10 @@ class GUI_Setup_SetupWindow extends JFrame implements MouseListener
         this._dashboardShipsCountIco[2].setText("x" + (3 - settings.installedTwoBoardShipsCount));
         this._dashboardShipsCountIco[3].setText("x" + (4 - settings.installedOneBoardShipsCount));
 
-        this._dashboardShipsIndicatorIco[0].setIcon(settings.isFourBoardShipsInstalledAll  ? MapSupplier.ICO_SHIP_INDICATOR_TRUE : MapSupplier.ICO_SHIP_INDICATOR_FALSE);
+        this._dashboardShipsIndicatorIco[0].setIcon(settings.isFourBoardShipsInstalledAll ? MapSupplier.ICO_SHIP_INDICATOR_TRUE : MapSupplier.ICO_SHIP_INDICATOR_FALSE);
         this._dashboardShipsIndicatorIco[1].setIcon(settings.isThreeBoardShipsInstalledAll ? MapSupplier.ICO_SHIP_INDICATOR_TRUE : MapSupplier.ICO_SHIP_INDICATOR_FALSE);
-        this._dashboardShipsIndicatorIco[2].setIcon(settings.isTwoBoardShipsInstalledAll   ? MapSupplier.ICO_SHIP_INDICATOR_TRUE : MapSupplier.ICO_SHIP_INDICATOR_FALSE);
-        this._dashboardShipsIndicatorIco[3].setIcon(settings.isOneBoardShipsInstalledAll   ? MapSupplier.ICO_SHIP_INDICATOR_TRUE : MapSupplier.ICO_SHIP_INDICATOR_FALSE);
+        this._dashboardShipsIndicatorIco[2].setIcon(settings.isTwoBoardShipsInstalledAll ? MapSupplier.ICO_SHIP_INDICATOR_TRUE : MapSupplier.ICO_SHIP_INDICATOR_FALSE);
+        this._dashboardShipsIndicatorIco[3].setIcon(settings.isOneBoardShipsInstalledAll ? MapSupplier.ICO_SHIP_INDICATOR_TRUE : MapSupplier.ICO_SHIP_INDICATOR_FALSE);
 
         if (settings.isOneBoardShipsInstalledAll && settings.isTwoBoardShipsInstalledAll
                 && settings.isThreeBoardShipsInstalledAll && settings.isFourBoardShipsInstalledAll)
@@ -226,7 +274,7 @@ class GUI_Setup_SetupWindow extends JFrame implements MouseListener
             this._dashBoardInfoGUI.installedTwoBoardShipsCount   = 0;
             this._dashBoardInfoGUI.installedThreeBoardShipsCount = 0;
             this._dashBoardInfoGUI.installedFourBoardShipsCount  = 0;
-            
+
             this._buttonSetShip.buttonEnabled = false;
             this._buttonSetShip.setIcon(MapSupplier.BUTTON_SETUP_SETSHIP_INACTIVE);
 
@@ -574,5 +622,151 @@ class GUI_Setup_SetupWindow extends JFrame implements MouseListener
 
             this._RenderDash(this._dashBoardInfoGUI);
         }
+    }
+}
+
+class IntroBtnListener implements MouseListener
+{
+
+    private final JLabel _backGround;
+    private final JLabel _message;
+    private final JLabel _btnYes;
+    private final JLabel _btnNo;
+    private final GUI_Setup_SetupWindow _sourceObj;
+
+    private int _instructionID = -1;
+
+    public IntroBtnListener(JLabel backGround, JLabel message, JLabel btnYes, JLabel btnNo, GUI_Setup_SetupWindow sourceObj)
+    {
+        this._backGround = backGround;
+        this._message = message;
+        this._btnYes = btnYes;
+        this._btnNo = btnNo;
+        this._sourceObj = sourceObj;
+    }
+
+    public void mouseClicked(MouseEvent event)
+    {
+        JLabel lbl = (JLabel) event.getComponent();
+
+        if (lbl.getX() == 350)
+        {
+            this._btnNo.setVisible(false);
+            this._btnYes.setVisible(false);
+            this._message.setVisible(false);
+            this._backGround.addMouseListener(this);
+            this._instructionID++;
+        }
+        if (!this._message.isVisible())
+        {
+            if (this._instructionID >= 0)
+            {
+                this._instructionID++;
+                
+                switch (this._instructionID)
+                {
+                    case 1:
+                    {
+                        this._backGround.setIcon(new ImageIcon("images/setup/Instructions/Instruction_Cell.png"));
+                        break;
+                    }
+                    case 2:
+                    {
+                        this._backGround.setIcon(new ImageIcon("images/setup/Instructions/Instruction_Dash.png"));
+                        break;
+                    }
+                    case 3:
+                    {
+                        this._backGround.setIcon(new ImageIcon("images/setup/Instructions/Instruction_StartGame.png"));
+                        break;
+                    }
+                    case 4:
+                    {
+                        this._backGround.setIcon(new ImageIcon("images/setup/Instructions/Instruction_SetShip.png"));
+                        break;
+                    }
+                    case 5:
+                    {
+                        this._backGround.setIcon(new ImageIcon("images/setup/Instructions/Instruction_Reset.png"));
+                        break;
+                    }
+                }
+
+                if (this._instructionID == 6)
+                {
+                    this._backGround.removeMouseListener(this);
+                    this._btnNo.removeMouseListener(this);
+                    this._btnYes.removeMouseListener(this);
+                    this._sourceObj.InitAll();
+                    this._backGround.setVisible(false);
+                }              
+            }
+        } else
+        {
+            this._backGround.setVisible(false);
+            this._btnNo.setVisible(false);
+            this._btnYes.setVisible(false);
+            this._message.setVisible(false);
+            this._sourceObj.InitAll();
+        }
+    }
+
+    public void mouseEntered(MouseEvent event)
+    {
+    }
+
+    public void mouseExited(MouseEvent event)
+    {
+    }
+
+    public void mousePressed(MouseEvent event)
+    {
+        JLabel lbl = (JLabel) event.getComponent();
+
+        if (lbl.getX() == 350)
+            this._btnYes.setIcon(new ImageIcon("images/setup/Intro_Hello_BtnYes_Pressed.png"));
+        else if (this._instructionID >= 1)
+        {
+            switch (this._instructionID)
+            {
+                case 1:
+                {
+                    this._backGround.setIcon(new ImageIcon("images/setup/Instructions/Instruction_Cell_Pressed.png"));
+                    break;
+                }
+                case 2:
+                {
+                    this._backGround.setIcon(new ImageIcon("images/setup/Instructions/Instruction_Dash_Pressed.png"));
+                    break;
+                }
+                case 3:
+                {
+                    this._backGround.setIcon(new ImageIcon("images/setup/Instructions/Instruction_StartGame_Pressed.png"));
+                    break;
+                }
+                case 4:
+                {
+                    this._backGround.setIcon(new ImageIcon("images/setup/Instructions/Instruction_SetShip_Pressed.png"));
+                    break;
+                }
+                case 5:
+                {
+                    this._backGround.setIcon(new ImageIcon("images/setup/Instructions/Instruction_Reset_Pressed.png"));
+                    break;
+                }
+            }
+        } else
+            this._btnNo.setIcon(new ImageIcon("images/setup/Intro_Hello_BtnNo_Pressed.png"));
+
+    }
+
+    public void mouseReleased(MouseEvent event)
+    {
+        JLabel lbl = (JLabel) event.getComponent();
+
+        if (lbl.getX() == 350)
+            this._btnYes.setIcon(new ImageIcon("images/setup/Intro_Hello_BtnYes.png"));
+        else
+            this._btnNo.setIcon(new ImageIcon("images/setup/Intro_Hello_BtnNo.png"));
     }
 }
