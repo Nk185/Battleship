@@ -18,6 +18,28 @@ class MapEngine
     public static final ImageIcon ICO_SHIP_INDICATOR_TRUE  = new ImageIcon("images/setup/Indicator_True.png");
     public static final ImageIcon ICO_SHIP_INDICATOR_FALSE = new ImageIcon("images/setup/Indicator_False.png");
 
+    public static final ImageIcon ICO_DASH_SHIP_NORMAL_4         = new ImageIcon("images/setup/dash_shipIco_4.png");
+    public static final ImageIcon ICO_DASH_SHIP_NORMAL_3         = new ImageIcon("images/setup/dash_shipIco_3.png");
+    public static final ImageIcon ICO_DASH_SHIP_NORMAL_2         = new ImageIcon("images/setup/dash_shipIco_2.png");
+    public static final ImageIcon ICO_DASH_SHIP_NORMAL_1         = new ImageIcon("images/setup/dash_shipIco_1.png");
+    public static final ImageIcon ICO_DASH_SHIP_ACTIVE_4         = new ImageIcon("images/setup/dash_shipIco_active_4.png");
+    public static final ImageIcon ICO_DASH_SHIP_ACTIVE_3         = new ImageIcon("images/setup/dash_shipIco_active_3.png");
+    public static final ImageIcon ICO_DASH_SHIP_ACTIVE_2         = new ImageIcon("images/setup/dash_shipIco_active_2.png");
+    public static final ImageIcon ICO_DASH_SHIP_ACTIVE_1         = new ImageIcon("images/setup/dash_shipIco_active_1.png");
+    public static final ImageIcon ICO_DASH_SHIP_INACTIVE_4       = new ImageIcon("images/setup/dash_shipIco_inactive_4.png");
+    public static final ImageIcon ICO_DASH_SHIP_INACTIVE_3       = new ImageIcon("images/setup/dash_shipIco_inactive_3.png");
+    public static final ImageIcon ICO_DASH_SHIP_INACTIVE_2       = new ImageIcon("images/setup/dash_shipIco_inactive_2.png");
+    public static final ImageIcon ICO_DASH_SHIP_INACTIVE_1       = new ImageIcon("images/setup/dash_shipIco_inactive_1.png");
+    public static final ImageIcon ICO_DASH_SHIP_INACTIVE_WRONG_4 = new ImageIcon("images/setup/dash_shipIco_inactive_wrong_4.png");
+    public static final ImageIcon ICO_DASH_SHIP_INACTIVE_WRONG_3 = new ImageIcon("images/setup/dash_shipIco_inactive_wrong_3.png");
+    public static final ImageIcon ICO_DASH_SHIP_INACTIVE_WRONG_2 = new ImageIcon("images/setup/dash_shipIco_inactive_wrong_2.png");
+    public static final ImageIcon ICO_DASH_SHIP_INACTIVE_WRONG_1 = new ImageIcon("images/setup/dash_shipIco_inactive_wrong_1.png");
+    public static final ImageIcon ICO_DASH_SHIP_ERROR_4          = new ImageIcon("images/setup/dash_shipIco_error_4.png");
+    public static final ImageIcon ICO_DASH_SHIP_ERROR_3          = new ImageIcon("images/setup/dash_shipIco_error_3.png");
+    public static final ImageIcon ICO_DASH_SHIP_ERROR_2          = new ImageIcon("images/setup/dash_shipIco_error_2.png");
+    public static final ImageIcon ICO_DASH_SHIP_ERROR_1          = new ImageIcon("images/setup/dash_shipIco_error_1.png");
+
+
     public static final ImageIcon BUTTON_SETUP_SETSHIP_INACTIVE         = new ImageIcon("images/setup/SetButton_Inactive.png");
     public static final ImageIcon BUTTON_SETUP_SETSHIP_ACTIVE           = new ImageIcon("images/setup/SetButton_Active.png");
     public static final ImageIcon BUTTON_SETUP_SETSHIP_ACTIVE_FOCUSED   = new ImageIcon("images/setup/SetButton_Active_Focused.png");
@@ -27,6 +49,8 @@ class MapEngine
     public static final ImageIcon BUTTON_SETUP_STARTGAME_INACTIVE       = new ImageIcon("images/setup/StartGameButton_Inactive.png");
     public static final ImageIcon BUTTON_SETUP_STARTGAME_ACTIVE         = new ImageIcon("images/setup/StartGameButton_Active.png");
     public static final ImageIcon BUTTON_SETUP_STARTGAME_ACTIVE_FOCUSED = new ImageIcon("images/setup/StartGameButton_Active_Focused.png");
+
+
     
     public static final void setGridLabel(GUI_FieldCell[][] labelsArray, JLayeredPane sourcePanel,
             int startLblPosX, int startLblPosY, int lightX, int lightY)

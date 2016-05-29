@@ -57,14 +57,16 @@ class GUI_Setup_SetupWindow extends JFrame implements MouseListener
                 _instructionMsg[0].getY() + _instructionMsg[0].getHeight());
         _instructionMsg[1].setSize(_instructionMsg[1].getIcon().getIconWidth(),
                 _instructionMsg[1].getIcon().getIconHeight());
-        _instructionMsg[1].addMouseListener(new IntroBtnListener(_introBG, _instructionMsg[0], _instructionMsg[1], _instructionMsg[2], this));
+        _instructionMsg[1].addMouseListener(new IntroBtnListener(_introBG,
+                _instructionMsg[0], _instructionMsg[1], _instructionMsg[2], this));
 
         _instructionMsg[2].setIcon(new ImageIcon("images/setup/Intro_Hello_BtnNo.png"));
         _instructionMsg[2].setLocation(_instructionMsg[1].getX() + _instructionMsg[1].getWidth(),
                 _instructionMsg[0].getY() + _instructionMsg[0].getHeight());
         _instructionMsg[2].setSize(_instructionMsg[2].getIcon().getIconWidth(),
                 _instructionMsg[2].getIcon().getIconHeight());
-        _instructionMsg[2].addMouseListener(new IntroBtnListener(_introBG, _instructionMsg[0], _instructionMsg[1], _instructionMsg[2], this));
+        _instructionMsg[2].addMouseListener(new IntroBtnListener(_introBG,
+                _instructionMsg[0], _instructionMsg[1], _instructionMsg[2], this));
 
         this._mainPanel.add(_introBG);
         this._mainPanel.add(_instructionMsg[0]);
@@ -153,38 +155,50 @@ class GUI_Setup_SetupWindow extends JFrame implements MouseListener
         this._buttonStartGame.setIcon(MapEngine.BUTTON_SETUP_STARTGAME_INACTIVE);
         this._buttonStartGame.setSize(this._buttonStartGame.getIcon().getIconWidth(),
                 this._buttonStartGame.getIcon().getIconHeight());
-        this._buttonStartGame.setLocation((this._dashboard.getWidth() - this._buttonStartGame.getWidth()) / 2 - 13,
+        this._buttonStartGame.setLocation((this._dashboard.getWidth()
+                - this._buttonStartGame.getWidth()) / 2 - 13,
                 this._dashboard.getHeight() - 235);
         this._buttonStartGame.addMouseListener(this);
 
         this._buttonSetShip.setIcon(MapEngine.BUTTON_SETUP_SETSHIP_INACTIVE);
         this._buttonSetShip.setSize(this._buttonSetShip.getIcon().getIconWidth(),
                 this._buttonSetShip.getIcon().getIconHeight());
-        this._buttonSetShip.setLocation((this._dashboard.getWidth() - this._buttonSetShip.getWidth()) / 2 - 13,
+        this._buttonSetShip.setLocation((this._dashboard.getWidth()
+                - this._buttonSetShip.getWidth()) / 2 - 13,
                 this._dashboard.getHeight() - 170);
         this._buttonSetShip.addMouseListener(this);
 
         this._resetButton.setIcon(MapEngine.BUTTON_SETUP_RESET_ACTIVE);
         this._resetButton.setSize(this._resetButton.getIcon().getIconWidth(),
                 this._resetButton.getIcon().getIconHeight());
-        this._resetButton.setLocation((this._dashboard.getWidth() - this._resetButton.getWidth()) / 2 - 13,
+        this._resetButton.setLocation((this._dashboard.getWidth()
+                - this._resetButton.getWidth()) / 2 - 13,
                 this._dashboard.getHeight() - 105);
         this._resetButton.buttonEnabled = true;
         this._resetButton.addMouseListener(this);
 
-        this._dashboardShipsIco[0].setIcon(new ImageIcon("images/setup/dash_shipIco_4.png"));
-        this._dashboardShipsIco[0].setSize(this._dashboardShipsIco[0].getIcon().getIconWidth(),
-                this._dashboardShipsIco[0].getIcon().getIconHeight());
+        this._dashboardShipsIco[0].setIcon(MapEngine.ICO_DASH_SHIP_NORMAL_4);
+        this._dashboardShipsIco[0].setSize(MapEngine.ICO_DASH_SHIP_NORMAL_4.getIconWidth(),
+                MapEngine.ICO_DASH_SHIP_NORMAL_4.getIconHeight());
         this._dashboardShipsIco[0].setLocation(20, 113);
 
-        for (int i = 1; i < 4; i++)
-        {
-            this._dashboardShipsIco[i].setIcon(new ImageIcon("images/setup/dash_shipIco_"
-                    + (4 - i) + ".png"));
-            this._dashboardShipsIco[i].setSize(this._dashboardShipsIco[i].getIcon().getIconWidth(),
-                    this._dashboardShipsIco[i].getIcon().getIconHeight());
-            this._dashboardShipsIco[i].setLocation(20, this._dashboardShipsIco[i - 1].getY() + 64);
-        }
+        this._dashboardShipsIco[1].setIcon(MapEngine.ICO_DASH_SHIP_NORMAL_3);
+        this._dashboardShipsIco[1].setSize(MapEngine.ICO_DASH_SHIP_NORMAL_3.getIconWidth(),
+                MapEngine.ICO_DASH_SHIP_NORMAL_3.getIconHeight());
+        this._dashboardShipsIco[1].setLocation(20, this._dashboardShipsIco[0].getY()
+                + MapEngine.ICO_DASH_SHIP_NORMAL_4.getIconHeight() + 26);
+
+        this._dashboardShipsIco[2].setIcon(MapEngine.ICO_DASH_SHIP_NORMAL_2);
+        this._dashboardShipsIco[2].setSize(MapEngine.ICO_DASH_SHIP_NORMAL_2.getIconWidth(),
+                MapEngine.ICO_DASH_SHIP_NORMAL_2.getIconHeight());
+        this._dashboardShipsIco[2].setLocation(20, this._dashboardShipsIco[1].getY()
+                + MapEngine.ICO_DASH_SHIP_NORMAL_3.getIconHeight() + 26);
+
+        this._dashboardShipsIco[3].setIcon(MapEngine.ICO_DASH_SHIP_NORMAL_1);
+        this._dashboardShipsIco[3].setSize(MapEngine.ICO_DASH_SHIP_NORMAL_1.getIconWidth(),
+                MapEngine.ICO_DASH_SHIP_NORMAL_1.getIconHeight());
+        this._dashboardShipsIco[3].setLocation(20, this._dashboardShipsIco[2].getY()
+                + MapEngine.ICO_DASH_SHIP_NORMAL_1.getIconHeight() + 26);
 
         for (int i = 0; i < 4; i++)
         {
@@ -198,18 +212,22 @@ class GUI_Setup_SetupWindow extends JFrame implements MouseListener
             this._dashboardShipsCountIco[i].setText("x" + (i + 1));
             this._dashboardShipsCountIco[i].setSize(90, 90);
             this._dashboardShipsCountIco[i].setFont(new Font("Segoe UI Light", 0, 50));
-            this._dashboardShipsCountIco[i].setLocation(this._dashboardShipsIco[i].getX() + this._dashboardShipsIco[i].getWidth() + 5,
-                    this._dashboardShipsIco[i].getY() - 28);
+            this._dashboardShipsCountIco[i].setLocation(this._dashboardShipsIco[i].getX()
+                    + this._dashboardShipsIco[i].getWidth() + 5, this._dashboardShipsIco[i].getY() - 28);
             this._dashboardShipsCountIco[i].setForeground(new Color(122, 141, 155));
         }
 
-        MapEngine.setGridLabel(this._userCells, this._mainPanel, this._dashboard.getWidth() + 20, 50, this.getContentPane().getWidth() / 2, (this.getContentPane().getHeight() / 2));
+        MapEngine.setGridLabel(this._userCells, this._mainPanel,
+                this._dashboard.getWidth() + 20, 50,
+                this.getContentPane().getWidth() / 2,
+                (this.getContentPane().getHeight() / 2));
 
         for (GUI_FieldCell[] cell : this._userCells)
         {
             for (GUI_FieldCell cell2 : cell)
             {
-                cell2.addMouseListener(new GUI_Setup_CellsListener(this._userCells, this._buttonSetShip, this._dashBoardInfoGUI));
+                cell2.addMouseListener(new GUI_Setup_CellsListener(this._userCells,
+                        this._buttonSetShip, this._dashBoardInfoGUI, this._dashboardShipsIco));
             }
         }
 
@@ -233,10 +251,23 @@ class GUI_Setup_SetupWindow extends JFrame implements MouseListener
         this._dashboardShipsCountIco[2].setText("x" + (3 - settings.installedTwoBoardShipsCount));
         this._dashboardShipsCountIco[3].setText("x" + (4 - settings.installedOneBoardShipsCount));
 
-        this._dashboardShipsIndicatorIco[0].setIcon(settings.isFourBoardShipsInstalledAll ? MapEngine.ICO_SHIP_INDICATOR_TRUE : MapEngine.ICO_SHIP_INDICATOR_FALSE);
-        this._dashboardShipsIndicatorIco[1].setIcon(settings.isThreeBoardShipsInstalledAll ? MapEngine.ICO_SHIP_INDICATOR_TRUE : MapEngine.ICO_SHIP_INDICATOR_FALSE);
-        this._dashboardShipsIndicatorIco[2].setIcon(settings.isTwoBoardShipsInstalledAll ? MapEngine.ICO_SHIP_INDICATOR_TRUE : MapEngine.ICO_SHIP_INDICATOR_FALSE);
-        this._dashboardShipsIndicatorIco[3].setIcon(settings.isOneBoardShipsInstalledAll ? MapEngine.ICO_SHIP_INDICATOR_TRUE : MapEngine.ICO_SHIP_INDICATOR_FALSE);
+        this._dashboardShipsIndicatorIco[0].setIcon(settings.isFourBoardShipsInstalledAll
+                ? MapEngine.ICO_SHIP_INDICATOR_TRUE : MapEngine.ICO_SHIP_INDICATOR_FALSE);
+        this._dashboardShipsIndicatorIco[1].setIcon(settings.isThreeBoardShipsInstalledAll
+                ? MapEngine.ICO_SHIP_INDICATOR_TRUE : MapEngine.ICO_SHIP_INDICATOR_FALSE);
+        this._dashboardShipsIndicatorIco[2].setIcon(settings.isTwoBoardShipsInstalledAll
+                ? MapEngine.ICO_SHIP_INDICATOR_TRUE : MapEngine.ICO_SHIP_INDICATOR_FALSE);
+        this._dashboardShipsIndicatorIco[3].setIcon(settings.isOneBoardShipsInstalledAll
+                ? MapEngine.ICO_SHIP_INDICATOR_TRUE : MapEngine.ICO_SHIP_INDICATOR_FALSE);
+
+        this._dashboardShipsIco[0].setIcon(settings.isFourBoardShipsInstalledAll
+                ? MapEngine.ICO_DASH_SHIP_INACTIVE_4 : MapEngine.ICO_DASH_SHIP_NORMAL_4);
+        this._dashboardShipsIco[1].setIcon(settings.isThreeBoardShipsInstalledAll
+                ? MapEngine.ICO_DASH_SHIP_INACTIVE_3 : MapEngine.ICO_DASH_SHIP_NORMAL_3);
+        this._dashboardShipsIco[2].setIcon(settings.isTwoBoardShipsInstalledAll
+                ? MapEngine.ICO_DASH_SHIP_INACTIVE_2 : MapEngine.ICO_DASH_SHIP_NORMAL_2);
+        this._dashboardShipsIco[3].setIcon(settings.isOneBoardShipsInstalledAll
+                ? MapEngine.ICO_DASH_SHIP_INACTIVE_1 : MapEngine.ICO_DASH_SHIP_NORMAL_1);
 
         if (settings.isOneBoardShipsInstalledAll && settings.isTwoBoardShipsInstalledAll
                 && settings.isThreeBoardShipsInstalledAll && settings.isFourBoardShipsInstalledAll)
@@ -263,17 +294,26 @@ class GUI_Setup_SetupWindow extends JFrame implements MouseListener
             button.setLocation(button.getX() + 18, button.getY() + 14);
             button.setIcon(MapEngine.BUTTON_SETUP_SETSHIP_INACTIVE);
             button.buttonEnabled = false;
+
+            this._dashboardShipsIco[0].setIcon(this._dashBoardInfoGUI.isFourBoardShipsInstalledAll
+                    ? MapEngine.ICO_DASH_SHIP_INACTIVE_4 : MapEngine.ICO_DASH_SHIP_NORMAL_4);
+            this._dashboardShipsIco[1].setIcon(this._dashBoardInfoGUI.isThreeBoardShipsInstalledAll
+                    ? MapEngine.ICO_DASH_SHIP_INACTIVE_3 : MapEngine.ICO_DASH_SHIP_NORMAL_3);
+            this._dashboardShipsIco[2].setIcon(this._dashBoardInfoGUI.isTwoBoardShipsInstalledAll
+                    ? MapEngine.ICO_DASH_SHIP_INACTIVE_2 : MapEngine.ICO_DASH_SHIP_NORMAL_2);
+            this._dashboardShipsIco[3].setIcon(this._dashBoardInfoGUI.isOneBoardShipsInstalledAll
+                    ? MapEngine.ICO_DASH_SHIP_INACTIVE_1 : MapEngine.ICO_DASH_SHIP_NORMAL_1);
         } else if (button.buttonType == 2)
         {
-            this._dashBoardInfoGUI.isOneBoardShipsInstalledAll   = false;
-            this._dashBoardInfoGUI.isTwoBoardShipsInstalledAll   = false;
+            this._dashBoardInfoGUI.isOneBoardShipsInstalledAll = false;
+            this._dashBoardInfoGUI.isTwoBoardShipsInstalledAll = false;
             this._dashBoardInfoGUI.isThreeBoardShipsInstalledAll = false;
-            this._dashBoardInfoGUI.isFourBoardShipsInstalledAll  = false;
+            this._dashBoardInfoGUI.isFourBoardShipsInstalledAll = false;
 
-            this._dashBoardInfoGUI.installedOneBoardShipsCount   = 0;
-            this._dashBoardInfoGUI.installedTwoBoardShipsCount   = 0;
+            this._dashBoardInfoGUI.installedOneBoardShipsCount = 0;
+            this._dashBoardInfoGUI.installedTwoBoardShipsCount = 0;
             this._dashBoardInfoGUI.installedThreeBoardShipsCount = 0;
-            this._dashBoardInfoGUI.installedFourBoardShipsCount  = 0;
+            this._dashBoardInfoGUI.installedFourBoardShipsCount = 0;
 
             this._buttonSetShip.buttonEnabled = false;
             this._buttonSetShip.setIcon(MapEngine.BUTTON_SETUP_SETSHIP_INACTIVE);
@@ -662,7 +702,7 @@ class IntroBtnListener implements MouseListener
             if (this._instructionID >= 0)
             {
                 this._instructionID++;
-                
+
                 switch (this._instructionID)
                 {
                     case 1:
@@ -699,7 +739,7 @@ class IntroBtnListener implements MouseListener
                     this._btnYes.removeMouseListener(this);
                     this._sourceObj.initAll();
                     this._backGround.setVisible(false);
-                }              
+                }
             }
         } else
         {
