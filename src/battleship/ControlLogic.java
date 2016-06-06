@@ -16,7 +16,7 @@ public class ControlLogic implements IControlLogic, IStartGameEvent
     @Override
     public void startTheGame()
     {
-        this._view.showSetup("Встановіть свої кораблі");
+        this._view.showSetup("Морський бій");
         this._view.setup_Set_StartGameListener(this);
     }
 

@@ -22,9 +22,9 @@ class GUI_Setup_SetupWindow extends JFrame implements MouseListener
     public GUI_Setup_SetupWindow(String caption)
     {
         super((caption == null) ? "Setup window" : caption);
-        super.setResizable(false);
-        super.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        super.setResizable(false);        
         super.getContentPane().setBackground(new Color(209, 229, 248));
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         _ShowHelloMessage();
     }
@@ -83,9 +83,16 @@ class GUI_Setup_SetupWindow extends JFrame implements MouseListener
         super.setLocation((monitorWidth - super.getWidth()) / 2, (monitorHeight - super.getHeight()) / 2);
     }
 
-    public void initAll()
+    public void initAll(Component[] componentsToRemove)
     {
         this._InitializeComponents();
+        
+        for (Component label : componentsToRemove)
+        {       
+            this._mainPanel.remove(label);
+            this._mainPanel.validate();
+            this._mainPanel.repaint();
+        }
     }
 
     public void setStartGameEventListener(IStartGameEvent listener)
@@ -731,23 +738,19 @@ class IntroBtnListener implements MouseListener
                         break;
                     }
                 }
-
-                if (this._instructionID == 6)
-                {
-                    this._backGround.removeMouseListener(this);
-                    this._btnNo.removeMouseListener(this);
-                    this._btnYes.removeMouseListener(this);
-                    this._sourceObj.initAll();
-                    this._backGround.setVisible(false);
-                }
             }
-        } else
-        {
-            this._backGround.setVisible(false);
-            this._btnNo.setVisible(false);
-            this._btnYes.setVisible(false);
-            this._message.setVisible(false);
-            this._sourceObj.initAll();
+        }
+            
+        if (this._instructionID == 6 || this._message.isVisible())
+        {       
+            ComponentUpdator updator = new ComponentUpdator(new Component[]{ this._backGround });
+
+            this._backGround.setIcon(new ImageIcon("images/setup/loading.gif"));
+            updator.start();            
+            
+            this._sourceObj.initAll(new Component[] { this._btnNo, this._btnYes, this._message, this._backGround });
+            
+            updator.stop();
         }
     }
 
@@ -808,5 +811,55 @@ class IntroBtnListener implements MouseListener
             this._btnYes.setIcon(new ImageIcon("images/setup/Intro_Hello_BtnYes.png"));
         else
             this._btnNo.setIcon(new ImageIcon("images/setup/Intro_Hello_BtnNo.png"));
+    }
+}
+
+/**
+ * Used to update a clockwise animation during initialization of GUI components
+ * and setting them up.
+ * @author Nk185 <Nk185 at TheNik185@yandex.ua>
+ */
+class ComponentUpdator implements Runnable
+{
+    private final Component[] distComponents;
+    private static Thread thread;
+    
+    public ComponentUpdator (Component[] componentsToUpdate)
+    {
+        this.distComponents = componentsToUpdate;
+    }
+    
+    @Override
+    public void run()
+    {
+        while (!ComponentUpdator.thread.isInterrupted() && this.distComponents != null)
+        {
+            for (Component cmp : this.distComponents)
+                if (cmp != null && cmp.getGraphics() != null)                
+                    cmp.update(cmp.getGraphics());
+            
+           try
+           {
+               ComponentUpdator.thread.sleep(5);
+           }
+           catch (InterruptedException e) {} 
+        }
+        
+        if (this.distComponents == null)
+        {
+            ComponentUpdator.thread.interrupt();
+        }
+    }
+    
+    public void start()
+    {        
+        ComponentUpdator.thread = new Thread(this);
+        ComponentUpdator.thread.setDaemon(true);
+        ComponentUpdator.thread.start();
+    }
+    
+    public void stop()
+    {
+        ComponentUpdator.thread.interrupt();
     }
 }
